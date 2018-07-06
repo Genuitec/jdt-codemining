@@ -84,22 +84,9 @@ public class JavaCodeMiningProvider extends AbstractCodeMiningProvider implement
 				.isEnabled(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_IMPLEMENTATIONS_AT_LEAST_ONE);
 	}
 
-	private boolean isRunMainCodeMiningsEnabled() {
-		return JavaPreferencesPropertyTester.isEnabled(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_MAIN_RUN);
-	}
-
-	private boolean isDebugMainCodeMiningsEnabled() {
-		return JavaPreferencesPropertyTester.isEnabled(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_MAIN_DEBUG);
-	}
-
 	private boolean isRevisionRecentChangeEnabled() {
 		return JavaPreferencesPropertyTester
 				.isEnabled(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_REVISION_RECENT_CHANGE);
-	}
-
-	private boolean isRevisionRecentChangeWithAvatarEnabled() {
-		return JavaPreferencesPropertyTester
-				.isEnabled(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_REVISION_RECENT_CHANGE_WITH_AVATAR);
 	}
 
 	private boolean isRevisionRecentChangeWithDateEnabled() {
@@ -180,24 +167,6 @@ public class JavaCodeMiningProvider extends AbstractCodeMiningProvider implement
 					}
 				}
 			}
-			if (isRunMainCodeMiningsEnabled()) {
-				if (element instanceof IMethod && ((IMethod) (element)).isMainMethod()) {
-					try {
-						minings.add(new JavaLaunchCodeMining(element, "Run", "run", viewer.getDocument(), this));
-					} catch (BadLocationException e) {
-						// TODO: what should we done when there are some errors?
-					}
-				}
-			}
-			if (isDebugMainCodeMiningsEnabled()) {
-				if (element instanceof IMethod && ((IMethod) (element)).isMainMethod()) {
-					try {
-						minings.add(new JavaLaunchCodeMining(element, "Debug", "debug", viewer.getDocument(), this));
-					} catch (BadLocationException e) {
-						// TODO: what should we done when there are some errors?
-					}
-				}
-			}
 			boolean revisionRecentChangeEnabled = isRevisionRecentChangeEnabled();
 			boolean revisionAuthorsEnabled = isRevisionAuthorsEnabled();
 			if (revisionRecentChangeEnabled || revisionAuthorsEnabled) {
@@ -206,7 +175,7 @@ public class JavaCodeMiningProvider extends AbstractCodeMiningProvider implement
 					ILineRange lineRange = Utils.getLineRange(element, viewer.getDocument());
 					if (revisionRecentChangeEnabled) {
 						minings.add(new RevisionRecentChangeCodeMining(lineNumber, lineRange, viewer.getDocument(),
-								isRevisionRecentChangeWithAvatarEnabled(), isRevisionRecentChangeWithDateEnabled(),
+								false, isRevisionRecentChangeWithDateEnabled(),
 								this, this));
 					}
 					if (revisionAuthorsEnabled) {

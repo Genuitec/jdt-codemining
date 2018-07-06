@@ -36,10 +36,7 @@
 	           	   <test property="org.eclipse.jdt.codemining.hasPreference" value="java.codemining.references.atLeastOne" forcePluginActivation="true"/>
 	           	   <test property="org.eclipse.jdt.codemining.hasPreference" value="java.codemining.implementations" forcePluginActivation="true"/>
 	           	   <test property="org.eclipse.jdt.codemining.hasPreference" value="java.codemining.implementations.atLeastOne" forcePluginActivation="true"/>
-	           	   <test property="org.eclipse.jdt.codemining.hasPreference" value="java.codemining.main.run" forcePluginActivation="true"/>
-	           	   <test property="org.eclipse.jdt.codemining.hasPreference" value="java.codemining.main.debug" forcePluginActivation="true"/>	           	   
 	           	   <test property="org.eclipse.jdt.codemining.hasPreference" value="java.codemining.sccm.revison.recent.change" forcePluginActivation="true"/>
-	           	   <test property="org.eclipse.jdt.codemining.hasPreference" value="java.codemining.sccm.revison.recent.change.withAvatar" forcePluginActivation="true"/>
 	           	   <test property="org.eclipse.jdt.codemining.hasPreference" value="java.codemining.sccm.revison.recent.change.withDate" forcePluginActivation="true"/>
 	           	   <test property="org.eclipse.jdt.codemining.hasPreference" value="java.codemining.sccm.revision.authors" forcePluginActivation="true"/>	           	   
 	           	</or>
@@ -47,68 +44,7 @@
          </enabledWhen>
       </codeMiningProvider>
    </extension>
-       
-  <extension
-         point="org.eclipse.ui.workbench.texteditor.codeMiningProviders">
-      <codeMiningProvider
-         class="org.eclipse.jdt.internal.ui.javaeditor.codemining.JavaMethodParameterCodeMiningProvider"
-         id="org.eclipse.jdt.ui.codemining.method_parameter"
-         label="%JavaMethodParameterCodeMiningProvider.label">         
-	     <enabledWhen>
-	        <and>
-               <with variable="editorInput">
-	               <or>
-		              <adapt type="org.eclipse.core.resources.IFile">
-	                     <test property="org.eclipse.core.resources.contentTypeId" value="org.eclipse.jdt.core.javaSource" />                     
-		              </adapt>
-		              <adapt type="org.eclipse.jdt.core.IClassFile">
-						<instanceof value="org.eclipse.jdt.core.IClassFile" />
-		              </adapt>
-		           </or>
-	           </with>
-           	   <or>
-           	   	  <!-- TODO: change to property="org.eclipse.jdt.ui.hasPreference" -->
-	              <test property="org.eclipse.jdt.codemining.hasPreference" value="java.codemining.methodParameter.names" forcePluginActivation="true"/>
-	              <test property="org.eclipse.jdt.codemining.hasPreference" value="java.codemining.methodParameter.types" forcePluginActivation="true"/>
-	              <test property="org.eclipse.jdt.codemining.hasPreference" value="java.codemining.methodParameter.onlyForLiteral" forcePluginActivation="true"/>	              
-	              <test property="org.eclipse.jdt.codemining.hasPreference" value="java.codemining.endStatement" forcePluginActivation="true"/>
-	              <test property="org.eclipse.jdt.codemining.hasPreference" value="java.codemining.debug.variable" forcePluginActivation="true"/>
-	              <test property="org.eclipse.jdt.codemining.hasPreference" value="java.codemining.java10.var.type" forcePluginActivation="true"/>
-	           </or>
-           	</and>
-         </enabledWhen>
-      </codeMiningProvider>
-   </extension>
-   
-  <extension
-         point="org.eclipse.ui.workbench.texteditor.codeMiningProviders">
-      <codeMiningProvider
-         class="org.eclipse.jdt.junit.codemining.JUnitCodeMiningProvider"
-         id="org.eclipse.jdt.junit.codemining"
-         label="%JUnitCodeMiningProvider.label">
-         <enabledWhen>
-            <and>
-				<with variable="editorInput">
-	               <or>
-		              <adapt type="org.eclipse.core.resources.IFile">
-	                     <test property="org.eclipse.core.resources.contentTypeId" value="org.eclipse.jdt.core.javaSource" />                     
-		              </adapt>
-		              <adapt type="org.eclipse.jdt.core.IClassFile">
-						<instanceof value="org.eclipse.jdt.core.IClassFile" />
-		              </adapt>
-		           </or>
-	           	</with>
-           	   <or>
-           	   	  <!-- TODO: change to property="org.eclipse.jdt.ui.hasPreference" -->
-	              <test property="org.eclipse.jdt.codemining.hasPreference" value="java.codemining.junit.status" forcePluginActivation="true"/>
-	              <test property="org.eclipse.jdt.codemining.hasPreference" value="java.codemining.junit.run" forcePluginActivation="true"/>
-                  <test property="org.eclipse.jdt.codemining.hasPreference" value="java.codemining.junit.debug" forcePluginActivation="true"/>
-	           </or>
-	        </and>           	
-         </enabledWhen>
-      </codeMiningProvider>
-   </extension>
-   
+
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
@@ -125,5 +61,18 @@
             id="org.eclipse.jdt.ui.codemining"
             label="code mining">
       </keyword>
+   </extension>
+   <extension
+         point="com.genuitec.eclipse.patches.extensions">
+      <class-weaver
+            bundle="org.eclipse.jface.text"
+            enabled="true"
+            id="org.eclipse.jdt.codemining.fixPresentation"
+            name="Fix CodeMining Line Header"
+            weaver="com.genuitec.eclipse.codemining.patch.CodeMiningLineHeaderAnnotationWeaver">
+         <woven-class
+               name="org.eclipse.jface.internal.text.codemining.CodeMiningLineHeaderAnnotation">
+         </woven-class>
+      </class-weaver>
    </extension>   
 </plugin>

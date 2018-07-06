@@ -15,23 +15,17 @@ import org.eclipse.jface.text.revisions.Revision;
 import org.eclipse.jface.text.revisions.RevisionRange;
 import org.eclipse.jface.text.revisions.provisional.IRevisionRangeExtension;
 import org.eclipse.jface.text.revisions.provisional.IRevisionRangeProvider;
-import org.eclipse.jface.text.revisions.provisional.avatar.Avatar;
-import org.eclipse.jface.text.revisions.provisional.avatar.AvatarRepository;
 import org.eclipse.jface.text.source.ILineRange;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.widgets.Display;
 
 public class RevisionRecentChangeCodeMining extends LineHeaderCodeMining {
 
 	private final ILineRange lineRange;
 	private final IRevisionRangeProvider rangeProvider;
-	private final boolean showAvatar;
 	private final boolean showDate;
-	private Avatar avatar;
 
 	public RevisionRecentChangeCodeMining(int beforeLineNumber, ILineRange lineRange, IDocument document,
 			boolean showAvatar, boolean showDate, ICodeMiningProvider provider, IRevisionRangeProvider rangeProvider)
@@ -39,7 +33,6 @@ public class RevisionRecentChangeCodeMining extends LineHeaderCodeMining {
 		super(beforeLineNumber, document, provider);
 		this.rangeProvider = rangeProvider;
 		this.lineRange = lineRange;
-		this.showAvatar = showAvatar;
 		this.showDate = showDate;
 		if (rangeProvider.isInitialized()) {
 			updateLabel();
@@ -68,14 +61,6 @@ public class RevisionRecentChangeCodeMining extends LineHeaderCodeMining {
 				} else {
 					super.setLabel(revision.getAuthor());
 				}
-				if (showAvatar) {
-					if (revision instanceof IRevisionRangeExtension) {
-						String email = ((IRevisionRangeExtension) revision).getAuthorEmail();
-						if (email != null) {
-							avatar = AvatarRepository.getInstance().getAvatarByEmail(email);
-						}
-					}
-				}
 			}
 		} catch (Exception e) {
 			super.setLabel(e.getMessage());
@@ -85,27 +70,7 @@ public class RevisionRecentChangeCodeMining extends LineHeaderCodeMining {
 
 	@Override
 	public Point draw(GC gc, StyledText textWidget, Color color, int x, int y) {
-		if (avatar != null) {
-			Display display = textWidget.getDisplay();
-			Image image = new Image(display, avatar.getData());
-			
-			int textHeight = gc.stringExtent(getLabel()).y;
-			int imageYOffset = (textHeight - image.getBounds().height) / 2;
-			if (imageYOffset < 0 ) {
-				imageYOffset = 0;
-			}
-			
-			gc.drawImage(image, x, y + imageYOffset);
-			image.dispose();
-			x += 18;
-
-			Point title = super.draw(gc, textWidget, color, x, y);
-			title.x += 18;
-			return title;
-		} else {
-			return super.draw(gc, textWidget, color, x, y);
-		}
-
+		return super.draw(gc, textWidget, color, x, y);
 	}
 
 }

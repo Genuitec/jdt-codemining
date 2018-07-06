@@ -50,130 +50,6 @@ public class MyPreferenceConstants {
 	public static final String EDITOR_JAVA_CODEMINING_SHOW_IMPLEMENTATIONS_AT_LEAST_ONE = "java.codemining.implementations.atLeastOne"; //$NON-NLS-1$
 
 	/**
-	 * A named preference that stores the value for "Show method parameter names"
-	 * codemining.
-	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
-	 *
-	 * @since 3.14
-	 */
-	public static final String EDITOR_JAVA_CODEMINING_SHOW_METHOD_PARAMETER_NAMES = "java.codemining.methodParameter.names"; //$NON-NLS-1$
-
-	/**
-	 * A named preference that stores the value for "Show method parameter types".
-	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
-	 *
-	 * @since 3.14
-	 */
-	public static final String EDITOR_JAVA_CODEMINING_SHOW_METHOD_PARAMETER_TYPES = "java.codemining.methodParameter.types"; //$NON-NLS-1$
-
-	/**
-	 * A named preference that stores the value for "Show method parameter only for literal"
-	 * codemining.
-	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
-	 *
-	 * @since 3.14
-	 */
-	public static final String EDITOR_JAVA_CODEMINING_SHOW_METHOD_PARAMETER_ONLY_FOR_LITERAL = "java.codemining.methodParameter.onlyForLiteral"; //$NON-NLS-1$
-	
-	/**
-	 * A named preference that stores the value for "Show end statement".
-	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
-	 *
-	 * @since 3.14
-	 */
-	public static final String EDITOR_JAVA_CODEMINING_SHOW_END_STATEMENT = "java.codemining.endStatement"; //$NON-NLS-1$
-
-	/**
-	 * A named preference that stores the value for "Show end statement min line
-	 * number".
-	 * <p>
-	 * Value is of type <code>int</code>.
-	 * </p>
-	 *
-	 * @since 3.14
-	 */
-	public static final String EDITOR_JAVA_CODEMINING_SHOW_END_STATEMENT_MIN_LINE_NUMBER = "java.codemining.endStatement.minLineNumber"; //$NON-NLS-1$
-
-	/**
-	 * A named preference that stores the value for "Show run for main method"
-	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
-	 *
-	 * @since 3.14
-	 */
-	public static final String EDITOR_JAVA_CODEMINING_SHOW_MAIN_RUN = "java.codemining.main.run"; //$NON-NLS-1$
-
-	/**
-	 * A named preference that stores the value for "Show debug for main method"
-	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
-	 *
-	 * @since 3.14
-	 */
-	public static final String EDITOR_JAVA_CODEMINING_SHOW_MAIN_DEBUG = "java.codemining.main.debug"; //$NON-NLS-1$
-
-	/**
-	 * A named preference that stores the value for "Show type of Java9 'var' declaration"
-	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
-	 *
-	 * @since 3.14
-	 */
-	public static final String EDITOR_JAVA_CODEMINING_SHOW_JAVA10_VAR_TYPE = "java.codemining.java10.var.type"; //$NON-NLS-1$
-		
-	/**
-	 * A named preference that stores the value for "Show JUnit status".
-	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
-	 *
-	 * @since 3.14
-	 */
-	public static final String EDITOR_JAVA_CODEMINING_SHOW_JUNIT_STATUS = "java.codemining.junit.status"; //$NON-NLS-1$
-
-	/**
-	 * A named preference that stores the value for "Show JUnit run".
-	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
-	 *
-	 * @since 3.14
-	 */
-	public static final String EDITOR_JAVA_CODEMINING_SHOW_JUNIT_RUN = "java.codemining.junit.run"; //$NON-NLS-1$
-
-	/**
-	 * A named preference that stores the value for "Show JUnit debug".
-	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
-	 *
-	 * @since 3.14
-	 */
-	public static final String EDITOR_JAVA_CODEMINING_SHOW_JUNIT_DEBUG = "java.codemining.junit.debug"; //$NON-NLS-1$
-
-	/**
-	 * A named preference that stores the value for "Show variable values inline
-	 * while debugging".
-	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
-	 *
-	 * @since 3.14
-	 */
-	public static final String EDITOR_JAVA_CODEMINING_SHOW_VARIABLE_VALUE_WHILE_DEBUGGING = "java.codemining.debug.variable"; //$NON-NLS-1$
-
-	/**
 	 * A named preference that stores the value for "Show revision recent change".
 	 * <p>
 	 * Value is of type <code>Boolean</code>.
@@ -182,17 +58,6 @@ public class MyPreferenceConstants {
 	 * @since 3.14
 	 */
 	public static final String EDITOR_JAVA_CODEMINING_SHOW_REVISION_RECENT_CHANGE = "java.codemining.sccm.revison.recent.change"; //$NON-NLS-1$
-
-	/**
-	 * A named preference that stores the value for "Show revision recent change
-	 * with avatar".
-	 * <p>
-	 * Value is of type <code>Boolean</code>.
-	 * </p>
-	 *
-	 * @since 3.14
-	 */
-	public static final String EDITOR_JAVA_CODEMINING_SHOW_REVISION_RECENT_CHANGE_WITH_AVATAR = "java.codemining.sccm.revison.recent.change.withAvatar"; //$NON-NLS-1$
 
 	/**
 	 * A named preference that stores the value for "Show revision recent change
@@ -224,27 +89,12 @@ public class MyPreferenceConstants {
 	 *
 	 */
 	public static void initializeDefaultValues(IPreferenceStore store) {
-		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_REFERENCES, JavaCore.DISABLED);
-		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_REFERENCES_AT_LEAST_ONE, JavaCore.DISABLED);
-		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_IMPLEMENTATIONS, JavaCore.DISABLED);
+		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_REFERENCES, JavaCore.ENABLED);
+		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_REFERENCES_AT_LEAST_ONE, JavaCore.ENABLED);
+		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_IMPLEMENTATIONS, JavaCore.ENABLED);
 		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_IMPLEMENTATIONS_AT_LEAST_ONE,
 				JavaCore.DISABLED);
-		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_METHOD_PARAMETER_NAMES, JavaCore.DISABLED);
-		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_METHOD_PARAMETER_TYPES, JavaCore.DISABLED);
-		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_METHOD_PARAMETER_ONLY_FOR_LITERAL, JavaCore.ENABLED);		
-		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_END_STATEMENT, JavaCore.DISABLED);
-		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_END_STATEMENT_MIN_LINE_NUMBER, 4);
-		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_MAIN_RUN, JavaCore.DISABLED);
-		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_MAIN_DEBUG, JavaCore.DISABLED);
-		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_JAVA10_VAR_TYPE, JavaCore.DISABLED);		
-		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_JUNIT_STATUS, JavaCore.DISABLED);
-		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_JUNIT_RUN, JavaCore.DISABLED);
-		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_JUNIT_DEBUG, JavaCore.DISABLED);
-		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_VARIABLE_VALUE_WHILE_DEBUGGING,
-				JavaCore.DISABLED);
-		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_REVISION_RECENT_CHANGE, JavaCore.DISABLED);
-		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_REVISION_RECENT_CHANGE_WITH_AVATAR,
-				JavaCore.ENABLED);
+		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_REVISION_RECENT_CHANGE, JavaCore.ENABLED);
 		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_REVISION_RECENT_CHANGE_WITH_DATE,
 				JavaCore.ENABLED);
 		store.setDefault(MyPreferenceConstants.EDITOR_JAVA_CODEMINING_SHOW_REVISION_AUTHORS, JavaCore.DISABLED);
