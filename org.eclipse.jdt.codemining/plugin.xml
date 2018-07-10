@@ -74,5 +74,14 @@
                name="org.eclipse.jface.internal.text.codemining.CodeMiningLineHeaderAnnotation">
          </woven-class>
       </class-weaver>
+      <class-replacement
+            id="org.eclipse.jdt.codemining.class-replacement1"
+            name="Fix CodeMining Line Header">
+         <injected-class
+               bundle="org.eclipse.jface.text"
+               name="org.eclipse.jface.internal.text.codemining.CodeMiningLineHeaderAnnotation$RedrawRunnable"
+               path="resources/CodeMiningLineHeaderAnnotation$RedrawRunnable.class">
+         </injected-class>
+      </class-replacement>
    </extension>   
 </plugin>
