@@ -87,7 +87,7 @@ public class CodeMiningLineHeaderAnnotationWeaver extends AbstractClassPatch {
 			fv.visitEnd();
 		}
 		{
-			fv = cw.visitField(ACC_PRIVATE + ACC_STATIC, "_redrawScheduled", "Z", null, null);
+			fv = cw.visitField(ACC_PUBLIC + ACC_STATIC, "_redrawScheduled", "Z", null, null);
 			fv.visitEnd();
 		}
 
@@ -99,12 +99,13 @@ public class CodeMiningLineHeaderAnnotationWeaver extends AbstractClassPatch {
 			}
 		 */
 		removeMethod(cw, "getHeight", "()I");
+		MethodVisitor mv;
 		{
-			MethodVisitor mv = cw.visitMethod(ACC_PUBLIC, "getHeight", "()I", null, null);
+			mv = cw.visitMethod(ACC_PUBLIC, "getHeight", "()I", null, null);
 			mv.visitCode();
 			Label l0 = new Label();
 			mv.visitLabel(l0);
-			mv.visitLineNumber(91, l0);
+			mv.visitLineNumber(88, l0);
 			mv.visitVarInsn(ALOAD, 0);
 			mv.visitVarInsn(ALOAD, 0);
 			mv.visitMethodInsn(INVOKEVIRTUAL, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation", "getTextWidget", "()Lorg/eclipse/swt/custom/StyledText;", false);
@@ -112,7 +113,7 @@ public class CodeMiningLineHeaderAnnotationWeaver extends AbstractClassPatch {
 			mv.visitInsn(POP);
 			Label l1 = new Label();
 			mv.visitLabel(l1);
-			mv.visitLineNumber(92, l1);
+			mv.visitLineNumber(89, l1);
 			mv.visitVarInsn(ALOAD, 0);
 			mv.visitMethodInsn(INVOKESPECIAL, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation", "hasAtLeastOneResolvedMiningNotEmpty", "()Z", false);
 			Label l2 = new Label();
@@ -132,7 +133,8 @@ public class CodeMiningLineHeaderAnnotationWeaver extends AbstractClassPatch {
 			mv.visitLocalVariable("this", "Lorg/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation;", null, l0, l4, 0);
 			mv.visitMaxs(2, 1);
 			mv.visitEnd();
-		}
+			}
+
 		
 		/* Creates the font to use for the line annotations:
 		 * ---- code woven:
@@ -154,18 +156,18 @@ public class CodeMiningLineHeaderAnnotationWeaver extends AbstractClassPatch {
 			}
 		 */
 		{
-			MethodVisitor mv = cw.visitMethod(ACC_PROTECTED, "initFont", "(Lorg/eclipse/swt/custom/StyledText;)Lorg/eclipse/swt/graphics/Font;", null, null);
+			mv = cw.visitMethod(ACC_PROTECTED, "initFont", "(Lorg/eclipse/swt/custom/StyledText;)Lorg/eclipse/swt/graphics/Font;", null, null);
 			mv.visitCode();
 			Label l0 = new Label();
 			mv.visitLabel(l0);
-			mv.visitLineNumber(207, l0);
+			mv.visitLineNumber(240, l0);
 			mv.visitVarInsn(ALOAD, 1);
 			mv.visitMethodInsn(INVOKEVIRTUAL, "org/eclipse/swt/custom/StyledText", "getFont", "()Lorg/eclipse/swt/graphics/Font;", false);
 			mv.visitMethodInsn(INVOKEVIRTUAL, "org/eclipse/swt/graphics/Font", "getFontData", "()[Lorg/eclipse/swt/graphics/FontData;", false);
 			mv.visitVarInsn(ASTORE, 2);
 			Label l1 = new Label();
 			mv.visitLabel(l1);
-			mv.visitLineNumber(208, l1);
+			mv.visitLineNumber(241, l1);
 			mv.visitVarInsn(ALOAD, 0);
 			mv.visitFieldInsn(GETFIELD, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation", "_cachedFD", "Lorg/eclipse/swt/graphics/FontData;");
 			Label l2 = new Label();
@@ -179,12 +181,12 @@ public class CodeMiningLineHeaderAnnotationWeaver extends AbstractClassPatch {
 			mv.visitJumpInsn(IFEQ, l2);
 			Label l3 = new Label();
 			mv.visitLabel(l3);
-			mv.visitLineNumber(209, l3);
+			mv.visitLineNumber(242, l3);
 			mv.visitVarInsn(ALOAD, 0);
 			mv.visitFieldInsn(GETFIELD, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation", "_cachedFont", "Lorg/eclipse/swt/graphics/Font;");
 			mv.visitInsn(ARETURN);
 			mv.visitLabel(l2);
-			mv.visitLineNumber(211, l2);
+			mv.visitLineNumber(244, l2);
 			mv.visitFrame(Opcodes.F_APPEND,1, new Object[] {"[Lorg/eclipse/swt/graphics/FontData;"}, 0, null);
 			mv.visitVarInsn(ALOAD, 0);
 			mv.visitFieldInsn(GETFIELD, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation", "_cachedFont", "Lorg/eclipse/swt/graphics/Font;");
@@ -192,12 +194,12 @@ public class CodeMiningLineHeaderAnnotationWeaver extends AbstractClassPatch {
 			mv.visitJumpInsn(IFNULL, l4);
 			Label l5 = new Label();
 			mv.visitLabel(l5);
-			mv.visitLineNumber(212, l5);
+			mv.visitLineNumber(245, l5);
 			mv.visitVarInsn(ALOAD, 0);
 			mv.visitFieldInsn(GETFIELD, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation", "_cachedFont", "Lorg/eclipse/swt/graphics/Font;");
 			mv.visitMethodInsn(INVOKEVIRTUAL, "org/eclipse/swt/graphics/Font", "dispose", "()V", false);
 			mv.visitLabel(l4);
-			mv.visitLineNumber(213, l4);
+			mv.visitLineNumber(246, l4);
 			mv.visitFrame(Opcodes.F_SAME, 0, null, 0, null);
 			mv.visitVarInsn(ALOAD, 0);
 			mv.visitVarInsn(ALOAD, 2);
@@ -206,7 +208,7 @@ public class CodeMiningLineHeaderAnnotationWeaver extends AbstractClassPatch {
 			mv.visitFieldInsn(PUTFIELD, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation", "_cachedFD", "Lorg/eclipse/swt/graphics/FontData;");
 			Label l6 = new Label();
 			mv.visitLabel(l6);
-			mv.visitLineNumber(214, l6);
+			mv.visitLineNumber(247, l6);
 			mv.visitVarInsn(ALOAD, 0);
 			mv.visitTypeInsn(NEW, "org/eclipse/swt/graphics/Font");
 			mv.visitInsn(DUP);
@@ -227,7 +229,7 @@ public class CodeMiningLineHeaderAnnotationWeaver extends AbstractClassPatch {
 			mv.visitFieldInsn(PUTFIELD, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation", "_cachedFont", "Lorg/eclipse/swt/graphics/Font;");
 			Label l7 = new Label();
 			mv.visitLabel(l7);
-			mv.visitLineNumber(215, l7);
+			mv.visitLineNumber(248, l7);
 			mv.visitTypeInsn(NEW, "org/eclipse/swt/graphics/GC");
 			mv.visitInsn(DUP);
 			mv.visitVarInsn(ALOAD, 1);
@@ -235,14 +237,14 @@ public class CodeMiningLineHeaderAnnotationWeaver extends AbstractClassPatch {
 			mv.visitVarInsn(ASTORE, 3);
 			Label l8 = new Label();
 			mv.visitLabel(l8);
-			mv.visitLineNumber(216, l8);
+			mv.visitLineNumber(249, l8);
 			mv.visitVarInsn(ALOAD, 3);
 			mv.visitVarInsn(ALOAD, 0);
 			mv.visitFieldInsn(GETFIELD, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation", "_cachedFont", "Lorg/eclipse/swt/graphics/Font;");
 			mv.visitMethodInsn(INVOKEVIRTUAL, "org/eclipse/swt/graphics/GC", "setFont", "(Lorg/eclipse/swt/graphics/Font;)V", false);
 			Label l9 = new Label();
 			mv.visitLabel(l9);
-			mv.visitLineNumber(217, l9);
+			mv.visitLineNumber(250, l9);
 			mv.visitVarInsn(ALOAD, 0);
 			mv.visitVarInsn(ALOAD, 3);
 			mv.visitMethodInsn(INVOKEVIRTUAL, "org/eclipse/swt/graphics/GC", "getFontMetrics", "()Lorg/eclipse/swt/graphics/FontMetrics;", false);
@@ -250,12 +252,12 @@ public class CodeMiningLineHeaderAnnotationWeaver extends AbstractClassPatch {
 			mv.visitFieldInsn(PUTFIELD, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation", "_cachedHeight", "I");
 			Label l10 = new Label();
 			mv.visitLabel(l10);
-			mv.visitLineNumber(218, l10);
+			mv.visitLineNumber(251, l10);
 			mv.visitVarInsn(ALOAD, 3);
 			mv.visitMethodInsn(INVOKEVIRTUAL, "org/eclipse/swt/graphics/GC", "dispose", "()V", false);
 			Label l11 = new Label();
 			mv.visitLabel(l11);
-			mv.visitLineNumber(219, l11);
+			mv.visitLineNumber(252, l11);
 			mv.visitVarInsn(ALOAD, 0);
 			mv.visitFieldInsn(GETFIELD, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation", "_cachedFont", "Lorg/eclipse/swt/graphics/Font;");
 			mv.visitInsn(ARETURN);
@@ -268,6 +270,7 @@ public class CodeMiningLineHeaderAnnotationWeaver extends AbstractClassPatch {
 			mv.visitMaxs(7, 4);
 			mv.visitEnd();
 		}
+
 		
 		/* Rename and add redraw scheduling as part of redraw handling:
 		 * ---- class dropped in:
@@ -300,51 +303,56 @@ public class CodeMiningLineHeaderAnnotationWeaver extends AbstractClassPatch {
 		MethodNode m = findMethod(cw, "redraw", "()V");
 		if (m != null) {
 			m.name = "_redraw";
-			MethodVisitor mv = cw.visitMethod(ACC_PUBLIC, "redraw", "()V", null, null);
-			mv.visitCode();
-			Label l0 = new Label();
-			mv.visitLabel(l0);
-			mv.visitLineNumber(256, l0);
-			mv.visitVarInsn(ALOAD, 0);
-			mv.visitMethodInsn(INVOKEVIRTUAL, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation", "_redraw", "()V", false);
-			Label l1 = new Label();
-			mv.visitLabel(l1);
-			mv.visitLineNumber(258, l1);
-			mv.visitVarInsn(ALOAD, 0);
-			mv.visitMethodInsn(INVOKEVIRTUAL, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation", "getTextWidget", "()Lorg/eclipse/swt/custom/StyledText;", false);
-			mv.visitVarInsn(ASTORE, 1);
-			Label l2 = new Label();
-			mv.visitLabel(l2);
-			mv.visitLineNumber(259, l2);
-			mv.visitFieldInsn(GETSTATIC, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation", "_redrawScheduled", "Z");
-			Label l3 = new Label();
-			mv.visitJumpInsn(IFNE, l3);
-			Label l4 = new Label();
-			mv.visitLabel(l4);
-			mv.visitLineNumber(260, l4);
-			mv.visitInsn(ICONST_1);
-			mv.visitFieldInsn(PUTSTATIC, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation", "_redrawScheduled", "Z");
-			Label l5 = new Label();
-			mv.visitLabel(l5);
-			mv.visitLineNumber(261, l5);
-			mv.visitVarInsn(ALOAD, 1);
-			mv.visitMethodInsn(INVOKEVIRTUAL, "org/eclipse/swt/custom/StyledText", "getDisplay", "()Lorg/eclipse/swt/widgets/Display;", false);
-			mv.visitTypeInsn(NEW, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation$RedrawRunnable");
-			mv.visitInsn(DUP);
-			mv.visitVarInsn(ALOAD, 1);
-			mv.visitInsn(ACONST_NULL);
-			mv.visitMethodInsn(INVOKESPECIAL, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation$RedrawRunnable", "<init>", "(Lorg/eclipse/swt/custom/StyledText;Lorg/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation$RedrawRunnable;)V", false);
-			mv.visitMethodInsn(INVOKEVIRTUAL, "org/eclipse/swt/widgets/Display", "asyncExec", "(Ljava/lang/Runnable;)V", false);
-			mv.visitLabel(l3);
-			mv.visitLineNumber(263, l3);
-			mv.visitFrame(Opcodes.F_APPEND,1, new Object[] {"org/eclipse/swt/custom/StyledText"}, 0, null);
-			mv.visitInsn(RETURN);
-			Label l6 = new Label();
-			mv.visitLabel(l6);
-			mv.visitLocalVariable("this", "Lorg/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation;", null, l0, l6, 0);
-			mv.visitLocalVariable("text", "Lorg/eclipse/swt/custom/StyledText;", null, l2, l6, 1);
-			mv.visitMaxs(5, 2);
-			mv.visitEnd();
+			{
+				mv = cw.visitMethod(ACC_PUBLIC, "redraw", "()V", null, null);
+				mv.visitCode();
+				Label l0 = new Label();
+				mv.visitLabel(l0);
+				mv.visitLineNumber(202, l0);
+				mv.visitVarInsn(ALOAD, 0);
+				mv.visitMethodInsn(INVOKEVIRTUAL, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation", "_redraw", "()V", false);
+				Label l1 = new Label();
+				mv.visitLabel(l1);
+				mv.visitLineNumber(204, l1);
+				mv.visitVarInsn(ALOAD, 0);
+				mv.visitMethodInsn(INVOKEVIRTUAL, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation", "getTextWidget", "()Lorg/eclipse/swt/custom/StyledText;", false);
+				mv.visitVarInsn(ASTORE, 1);
+				Label l2 = new Label();
+				mv.visitLabel(l2);
+				mv.visitLineNumber(205, l2);
+				mv.visitFieldInsn(GETSTATIC, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation", "_redrawScheduled", "Z");
+				Label l3 = new Label();
+				mv.visitJumpInsn(IFNE, l3);
+				Label l4 = new Label();
+				mv.visitLabel(l4);
+				mv.visitLineNumber(206, l4);
+				mv.visitInsn(ICONST_1);
+				mv.visitFieldInsn(PUTSTATIC, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation", "_redrawScheduled", "Z");
+				Label l5 = new Label();
+				mv.visitLabel(l5);
+				mv.visitLineNumber(207, l5);
+				mv.visitVarInsn(ALOAD, 1);
+				mv.visitMethodInsn(INVOKEVIRTUAL, "org/eclipse/swt/custom/StyledText", "getDisplay", "()Lorg/eclipse/swt/widgets/Display;", false);
+				mv.visitTypeInsn(NEW, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation$RedrawRunnable");
+				mv.visitInsn(DUP);
+				mv.visitVarInsn(ALOAD, 0);
+				mv.visitVarInsn(ALOAD, 1);
+				mv.visitInsn(ACONST_NULL);
+				mv.visitMethodInsn(INVOKESPECIAL, "org/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation$RedrawRunnable", "<init>", "(Lorg/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation;Lorg/eclipse/swt/custom/StyledText;Lorg/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation$RedrawRunnable;)V", false);
+				mv.visitMethodInsn(INVOKEVIRTUAL, "org/eclipse/swt/widgets/Display", "asyncExec", "(Ljava/lang/Runnable;)V", false);
+				mv.visitLabel(l3);
+				mv.visitLineNumber(209, l3);
+				mv.visitFrame(Opcodes.F_APPEND,1, new Object[] {"org/eclipse/swt/custom/StyledText"}, 0, null);
+				mv.visitInsn(RETURN);
+				Label l6 = new Label();
+				mv.visitLabel(l6);
+				mv.visitLocalVariable("this", "Lorg/eclipse/jface/internal/text/codemining/CodeMiningLineHeaderAnnotation;", null, l0, l6, 0);
+				mv.visitLocalVariable("text", "Lorg/eclipse/swt/custom/StyledText;", null, l2, l6, 1);
+				mv.visitMaxs(6, 2);
+				mv.visitEnd();
+			}
+
+
 		}
 
 
@@ -358,24 +366,24 @@ public class CodeMiningLineHeaderAnnotationWeaver extends AbstractClassPatch {
 		 */
 		removeMethod(cw, "initGC", "(Lorg/eclipse/swt/custom/StyledText;Lorg/eclipse/swt/graphics/Color;Lorg/eclipse/swt/graphics/GC;)V");
 		{
-			MethodVisitor mv = cw.visitMethod(ACC_PRIVATE, "initGC", "(Lorg/eclipse/swt/custom/StyledText;Lorg/eclipse/swt/graphics/Color;Lorg/eclipse/swt/graphics/GC;)V", null, null);
+			mv = cw.visitMethod(ACC_PRIVATE, "initGC", "(Lorg/eclipse/swt/custom/StyledText;Lorg/eclipse/swt/graphics/Color;Lorg/eclipse/swt/graphics/GC;)V", null, null);
 			mv.visitCode();
 			Label l0 = new Label();
 			mv.visitLabel(l0);
-			mv.visitLineNumber(199, l0);
+			mv.visitLineNumber(195, l0);
 			mv.visitVarInsn(ALOAD, 3);
 			mv.visitVarInsn(ALOAD, 2);
 			mv.visitMethodInsn(INVOKEVIRTUAL, "org/eclipse/swt/graphics/GC", "setForeground", "(Lorg/eclipse/swt/graphics/Color;)V", false);
 			Label l1 = new Label();
 			mv.visitLabel(l1);
-			mv.visitLineNumber(200, l1);
+			mv.visitLineNumber(196, l1);
 			mv.visitVarInsn(ALOAD, 3);
 			mv.visitVarInsn(ALOAD, 1);
 			mv.visitMethodInsn(INVOKEVIRTUAL, "org/eclipse/swt/custom/StyledText", "getBackground", "()Lorg/eclipse/swt/graphics/Color;", false);
 			mv.visitMethodInsn(INVOKEVIRTUAL, "org/eclipse/swt/graphics/GC", "setBackground", "(Lorg/eclipse/swt/graphics/Color;)V", false);
 			Label l2 = new Label();
 			mv.visitLabel(l2);
-			mv.visitLineNumber(201, l2);
+			mv.visitLineNumber(197, l2);
 			mv.visitVarInsn(ALOAD, 3);
 			mv.visitVarInsn(ALOAD, 0);
 			mv.visitVarInsn(ALOAD, 1);
@@ -383,7 +391,7 @@ public class CodeMiningLineHeaderAnnotationWeaver extends AbstractClassPatch {
 			mv.visitMethodInsn(INVOKEVIRTUAL, "org/eclipse/swt/graphics/GC", "setFont", "(Lorg/eclipse/swt/graphics/Font;)V", false);
 			Label l3 = new Label();
 			mv.visitLabel(l3);
-			mv.visitLineNumber(202, l3);
+			mv.visitLineNumber(198, l3);
 			mv.visitInsn(RETURN);
 			Label l4 = new Label();
 			mv.visitLabel(l4);
@@ -393,7 +401,8 @@ public class CodeMiningLineHeaderAnnotationWeaver extends AbstractClassPatch {
 			mv.visitLocalVariable("gc", "Lorg/eclipse/swt/graphics/GC;", null, l0, l4, 3);
 			mv.visitMaxs(3, 4);
 			mv.visitEnd();
-		}
+			}
+
 
 		return true;
 	}
