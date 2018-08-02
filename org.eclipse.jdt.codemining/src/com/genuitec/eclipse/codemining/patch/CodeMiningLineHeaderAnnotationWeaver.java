@@ -19,7 +19,7 @@ import static org.objectweb.asm.Opcodes.GETSTATIC;
 import static org.objectweb.asm.Opcodes.GOTO;
 import static org.objectweb.asm.Opcodes.ICONST_0;
 import static org.objectweb.asm.Opcodes.ICONST_1;
-import static org.objectweb.asm.Opcodes.ICONST_3;
+import static org.objectweb.asm.Opcodes.ICONST_2;
 import static org.objectweb.asm.Opcodes.IFEQ;
 import static org.objectweb.asm.Opcodes.IFNE;
 import static org.objectweb.asm.Opcodes.IFNULL;
@@ -222,7 +222,7 @@ public class CodeMiningLineHeaderAnnotationWeaver extends AbstractClassPatch {
 			mv.visitInsn(ICONST_0);
 			mv.visitInsn(AALOAD);
 			mv.visitMethodInsn(INVOKEVIRTUAL, "org/eclipse/swt/graphics/FontData", "getHeight", "()I", false);
-			mv.visitInsn(ICONST_3);
+			mv.visitInsn(ICONST_2);
 			mv.visitInsn(ISUB);
 			mv.visitInsn(ICONST_0);
 			mv.visitMethodInsn(INVOKESPECIAL, "org/eclipse/swt/graphics/Font", "<init>", "(Lorg/eclipse/swt/graphics/Device;Ljava/lang/String;II)V", false);
